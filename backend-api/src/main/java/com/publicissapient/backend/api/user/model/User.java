@@ -1,29 +1,57 @@
 package com.publicissapient.backend.api.user.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
 @Data
 public class User {
     @Id
-    Long id;
+    private Long id;
 
-    @NotBlank
-    String firstName;
+    private String firstName;
+    private String lastName;
+    private String maidenName;
+    private Integer age;
+    private String gender;
+    private String email;
+    private String phone;
+    private String username;
+    private String password;
+    private String birthDate;
+    private String image;
+    private String bloodGroup;
+    private Double height;
+    private Double weight;
+    private String eyeColor;
 
-    @NotBlank
-    String lastName;
+    @Embedded
+    private Hair hair;
 
-    Integer age;
+    private String ip;
 
-    @NotBlank
-    String ssn;
+    @Embedded
+    private Address address;
 
-    @NotBlank
-    String role;
+    private String macAddress;
+    private String university;
+
+    @Embedded
+    private Bank bank;
+
+    @Embedded
+    private Company company;
+
+    private String ein;
+    private String ssn;
+    private String userAgent;
+
+    @Embedded
+    private Crypto crypto;
+
+    private String role;
 }
