@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "*")
 public interface UserController {
     @PostMapping("/load")
     ResponseEntity<Void> loadUsers();
