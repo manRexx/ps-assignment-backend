@@ -24,7 +24,6 @@ public interface UserController {
 
     @GetMapping("/search")
     ResponseEntity<Optional<User>> searchUsers(
-            @RequestParam(required = false) Long id,
-            @RequestParam(required = false) String ssn
+            @RequestParam(required = false) Long id
     );
 }

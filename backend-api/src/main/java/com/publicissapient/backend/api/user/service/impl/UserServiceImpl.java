@@ -48,10 +48,7 @@ public class UserServiceImpl implements UserService {
         return ascending ? userRepository.findAllByOrderByAgeAsc() : userRepository.findAllByOrderByAgeDesc();
     }
 
-    public Optional<User> searchUsers(Long id, String ssn) {
-        if ((id == null && ssn == null) || (id != null && ssn != null)) {
-            throw new IllegalArgumentException("Only one search parameter (id or ssn) must be provided");
-        }
-        return userRepository.searchUser(id, ssn);
+    public Optional<User> searchUsers(Long id) {
+        return userRepository.searchUserById(id);
     }
 }

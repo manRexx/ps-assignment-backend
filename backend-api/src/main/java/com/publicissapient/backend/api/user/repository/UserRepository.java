@@ -15,15 +15,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByOrderByAgeDesc();
 
-    @Query(
-            "SELECT u FROM User u " +
-                    "WHERE " +
-                        "u.id = :id " +
-                    "OR " +
-                        "u.ssn = :ssn"
-    )
-    Optional<User> searchUser(
-            @Param("id") Long id,
-            @Param("ssn") String ssn
-    );
+    Optional<User> searchUserById(Long id);
 }

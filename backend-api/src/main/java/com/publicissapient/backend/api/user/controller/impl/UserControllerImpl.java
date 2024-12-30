@@ -32,7 +32,7 @@ public class UserControllerImpl implements UserController {
         return ResponseEntity.ok(userService.getUsersSortedByAge(ascending));
     }
 
-    public ResponseEntity<Optional<User>> searchUsers(Long id, String ssn) {
-        return ResponseEntity.ok(userService.searchUsers(id, ssn));
+    public ResponseEntity<Optional<User>> searchUsers(Long id) {
+        return ResponseEntity.ok(userService.searchUsers(id));
     }
 }

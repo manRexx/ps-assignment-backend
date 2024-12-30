@@ -10,5 +10,5 @@ public interface UserService {
     List<User> getAllUsers();
     List<User> getUsersByRole(String role);
     List<User> getUsersSortedByAge(boolean ascending);
-    Optional<User> searchUsers(Long id, String ssn);
+    Optional<User> searchUsers(Long id);
 }
