@@ -19,3 +19,7 @@ spring:
 external:
   api:
     users-url: https://dummyjson.com/users
+
+springdoc:
+  api-docs:
+    path: /swagger-ui.html

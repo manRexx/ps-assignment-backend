@@ -1,6 +1,5 @@
 package com.publicissapient.backend.api.user.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import lombok.Data;
