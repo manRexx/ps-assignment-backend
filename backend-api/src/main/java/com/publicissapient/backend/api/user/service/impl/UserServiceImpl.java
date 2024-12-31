@@ -1,10 +1,10 @@
 package com.publicissapient.backend.api.user.service.impl;
 
 import com.publicissapient.backend.api.common.LoadResult;
+import com.publicissapient.backend.api.user.dto.ExternalApiResponse;
 import com.publicissapient.backend.api.user.model.User;
 import com.publicissapient.backend.api.user.repository.UserRepository;
 import com.publicissapient.backend.api.user.service.UserService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,8 +62,3 @@ public class UserServiceImpl implements UserService {
     }
 }
 
-@Data
-class ExternalApiResponse {
-    private List<User> users;
-    private int total;
-}

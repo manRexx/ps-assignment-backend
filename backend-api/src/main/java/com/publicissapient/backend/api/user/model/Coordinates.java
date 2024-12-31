@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Embeddable
 @Data
-class Coordinates {
+public class Coordinates {
     private Double lat;
     private Double lng;
 }
