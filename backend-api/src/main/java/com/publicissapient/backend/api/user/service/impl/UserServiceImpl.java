@@ -8,6 +8,8 @@ import com.publicissapient.backend.api.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,8 +27,9 @@ public class UserServiceImpl implements UserService {
     @Value("${external.api.users-url}")
     String usersDataUrl;
 
+    @CacheEvict(value = {"users", "usersByRole", "usersSortedByAge"}, allEntries = true)
     public LoadResult loadUsers() {
-        log.info("Loading users from external API");
+        log.info("Loading users from external API and clearing all caches");
         try {
             ExternalApiResponse response = restTemplate.getForObject(usersDataUrl, ExternalApiResponse.class);
             if (response == null) {
@@ -45,20 +48,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Cacheable(value = "users", unless = "#result.isEmpty()")
     public List<User> getAllUsers() {
+        log.info("Fetching all users from database");
         return userRepository.findAll();
     }
 
+    @Cacheable(value = "usersByRole", key = "#role", unless = "#result.isEmpty()")
     public List<User> getUsersByRole(String role) {
+        log.info("Fetching users by role: {}", role);
         return userRepository.findByRole(role);
     }
 
+    @Cacheable(value = "usersSortedByAge", key = "#ascending", unless = "#result.isEmpty()")
     public List<User> getUsersSortedByAge(boolean ascending) {
+        log.info("Fetching users sorted by age, ascending: {}", ascending);
         return ascending ? userRepository.findAllByOrderByAgeAsc() : userRepository.findAllByOrderByAgeDesc();
     }
 
     public Optional<User> searchUsers(Long id) {
+        log.info("Searching for user with id: {}", id);
         return userRepository.searchUserById(id);
     }
 }
-
