@@ -1,5 +1,7 @@
 package com.publicissapient.backend.api.user.controller;
 
+import com.publicissapient.backend.api.user.dto.LoadUsersResponseDto;
+import com.publicissapient.backend.api.user.dto.UserResponseDto;
 import com.publicissapient.backend.api.user.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +13,16 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public interface UserController {
     @PostMapping("/load")
-    ResponseEntity<Void> loadUsers();
+    ResponseEntity<LoadUsersResponseDto> loadUsers();
 
     @GetMapping
-    ResponseEntity<List<User>> getAllUsers();
+    ResponseEntity<UserResponseDto> getAllUsers();
 
     @GetMapping("/role")
-    ResponseEntity<List<User>> getUsersByRole(@RequestParam(required = true) String role);
+    ResponseEntity<UserResponseDto> getUsersByRole(@RequestParam(required = true) String role);
 
     @GetMapping("/sort/age")
-    ResponseEntity<List<User>> getUsersSortedByAge(@RequestParam(defaultValue = "true") boolean ascending);
+    ResponseEntity<UserResponseDto> getUsersSortedByAge(@RequestParam(defaultValue = "true") boolean ascending);
 
     @GetMapping("/search")
     ResponseEntity<Optional<User>> searchUsers(
