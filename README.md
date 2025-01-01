@@ -59,13 +59,13 @@ example API:
 - **Endpoint:** `/sort/age`
 - **Method:** `GET`
 - **Request Parameters:**
-  - `ascending`: default: `true`)
+  - `ascending`: default: `true`
 
 #### 5. **Search Users by ID**
 - **Endpoint:** `/search`
 - **Method:** `GET`
 - **Request Parameters:**
-  - `id`: A long representing the user ID. Must be between 1 and 30.
+  - `id`: id must be between 1 and 30.
 
 ## Additional Tools (after running the application you can see APIs documentation and db in the below URLs)
 - **Swagger UI:** http://localhost:8080/swagger-ui/index.html
