@@ -67,6 +67,6 @@ example API:
 - **Request Parameters:**
   - `id`: A long representing the user ID. Must be between 1 and 30.
 
-## Additional Tools
+## Additional Tools (after running the application you can see APIs documentation and db in the below URLs)
 - **Swagger UI:** http://localhost:8080/swagger-ui/index.html
 - **H2 Console:** http://localhost:8080/h2-console/
