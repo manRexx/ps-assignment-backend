@@ -34,6 +34,11 @@ All APIs are accessible under the base URL:
 /api/users
 ```
 
+example API:
+```
+[/api/users/load] (http://127.0.0.1:8080/api/users/load)
+```
+
 ### Endpoints
 
 #### 1. **Load Users**
