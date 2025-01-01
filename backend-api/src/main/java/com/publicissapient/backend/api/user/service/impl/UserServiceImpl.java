@@ -51,23 +51,35 @@ public class UserServiceImpl implements UserService {
     @Cacheable(value = "users", unless = "#result.isEmpty()")
     public List<User> getAllUsers() {
         log.info("Fetching all users from database");
-        return userRepository.findAll();
+        List<User> res = userRepository.findAll();
+        log.info("Successfully fetched {} users", res.size());
+        return res;
     }
 
     @Cacheable(value = "usersByRole", key = "#role", unless = "#result.isEmpty()")
     public List<User> getUsersByRole(String role) {
         log.info("Fetching users by role: {}", role);
-        return userRepository.findByRole(role);
+        List<User> users = userRepository.findByRole(role);
+        log.info("Successfully fetched {} users with role: {}", users.size(), role);
+        return users;
     }
 
     @Cacheable(value = "usersSortedByAge", key = "#ascending", unless = "#result.isEmpty()")
     public List<User> getUsersSortedByAge(boolean ascending) {
         log.info("Fetching users sorted by age, ascending: {}", ascending);
-        return ascending ? userRepository.findAllByOrderByAgeAsc() : userRepository.findAllByOrderByAgeDesc();
+        List<User> users = ascending ? userRepository.findAllByOrderByAgeAsc() : userRepository.findAllByOrderByAgeDesc();
+        log.info("Successfully fetched {} users sorted by age in {} order", users.size(), ascending ? "ascending" : "descending");
+        return users;
     }
 
     public Optional<User> searchUsers(Long id) {
         log.info("Searching for user with id: {}", id);
-        return userRepository.searchUserById(id);
+        Optional<User> user = userRepository.searchUserById(id);
+        if (user.isPresent()) {
+            log.info("Successfully found user with id: {}", id);
+        } else {
+            log.warn("No user found with id: {}", id);
+        }
+        return user;
     }
 }
